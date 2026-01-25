@@ -11,11 +11,12 @@ var usersRouter = require('./app_server/routes/users');
 var travelRouter = require('./app_server/routes/travel');
 
 var app = express();
-hbs.registerPartials(path.join(__dirname, 'app_server', 'views', 'partials'));
 
 // view engine setup
 app.set('views', path.join(__dirname, 'app_server', 'views'));
 app.set('view engine', 'hbs');
+
+hbs.registerPartials(path.join(__dirname, 'app_server', 'views', 'partials'));
 
 app.use(logger('dev'));
 app.use(express.json());
