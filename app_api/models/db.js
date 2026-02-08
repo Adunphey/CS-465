@@ -1,6 +1,6 @@
-console.log('db.js loaded');
-
 const mongoose = require('mongoose');
+
+require('./trips');
 
 const dbURI = 'mongodb://127.0.0.1:27017/travlr';
 
@@ -10,7 +10,7 @@ mongoose.connection.on('connected', () => {
   console.log(`Mongoose connected to ${dbURI}`);
 });
 
-mongoose.connection.on('error', (err) => {
+mongoose.connection.on('error', err => {
   console.log('Mongoose connection error:', err);
 });
 
@@ -18,4 +18,9 @@ mongoose.connection.on('disconnected', () => {
   console.log('Mongoose disconnected');
 });
 
-require('./trips');
+process.on('SIGINT', () => {
+  mongoose.connection.close(() => {
+    console.log('Mongoose disconnected through app termination');
+    process.exit(0);
+  });
+});
