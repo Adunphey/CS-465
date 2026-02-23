@@ -1,0 +1,30 @@
+<div class="card h-100">
+  <img
+    [src]="trip.img"
+    class="card-img-top"
+    [alt]="trip.name"
+    (error)="onImgError($event)"
+  />
+
+  <div class="card-body d-flex flex-column">
+    <h5 class="card-title">{{ trip.name }}</h5>
+
+    <div class="card-text mb-3" [innerHTML]="trip.description"></div>
+
+    <div class="mt-auto d-flex gap-2">
+      <a
+        [routerLink]="['/edit', trip._id]"
+        class="btn btn-warning btn-sm"
+      >
+        Edit
+      </a>
+
+      <button
+        class="btn btn-danger btn-sm"
+        (click)="delete()"
+      >
+        Delete
+      </button>
+    </div>
+  </div>
+</div>
