@@ -1,0 +1,19 @@
+<h2>Admin Login</h2>
+
+<form (ngSubmit)="submit()">
+  <div>
+    <label>Username</label><br />
+    <input name="username" [(ngModel)]="username" required />
+  </div>
+
+  <div style="margin-top:10px;">
+    <label>Password</label><br />
+    <input name="password" type="password" [(ngModel)]="password" required />
+  </div>
+
+  <!-- This guarantees the form submits -->
+<button type="button" (click)="submit()" style="margin-top:10px;">Login</button>
+  <p *ngIf="error" style="color:red; margin-top:10px;">
+    {{ error }}
+  </p>
+</form>
